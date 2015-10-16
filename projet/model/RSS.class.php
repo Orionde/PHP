@@ -1,4 +1,7 @@
 <?php
+
+require('Nouvelle.class.php');
+
 class RSS
 {
 	private $titre; // Titre du flux
@@ -7,10 +10,11 @@ class RSS
 	private $nouvelles; //Objet Nouvelle
 
 	// Contructeur
-	function __construct($url)
+	/*function __construct($url)
 	{
-		$this->url = $url;
-	}
+		if($url != null)
+			$this->url = $url;
+	}*/
 
 	// Fonctions getter
 	function getTitre()
@@ -35,28 +39,28 @@ class RSS
 	function update()
 	{
 		$doc = new DOMDocument;
+		
 		$doc->load($this->url);
 
 		$nodeList = $doc->getElementsByTagName('title');
 		$this->titre = $nodeList->item(0)->textContent;
 
-		$nodeList = $doc->getElementsByTagName('date');
+		$nodeList = $doc->getElementsByTagName('pubDate');
 		$this->date = $nodeList->item(0)->textContent;
 
 		$imageID = 1;
 
-		foreach($rss->getElementsByTagName('item') as $node)
+		foreach($doc->getElementsByTagName('item') as $node)
 		{
 			$nouvelle = new Nouvelle();
 
 			// Met à jour la nouvelle avec l'information téléchargée
 			$nouvelle->update($node);
 			// Téléchage l'image
-			$nouvelle->downloadImage($node,$nomLocalImage);
+			$nouvelle->downloadImage($node,$imageID);
+			$this->nouvelles[$imageID] = $nouvelle;
 			$imageID++;
 		}
-
-
 	}
 }
 ?>
