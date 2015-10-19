@@ -20,7 +20,6 @@ foreach($rss as $t)
 // Mise à jour du flux
 $t->update();
 echo $t->getTitre()."\n";
-echo $i;
 
 foreach($t->getNouvelles() as $nouvelle) {
 	echo ' '.$nouvelle->getTitre().' '.$nouvelle->getDateP()."\n";

@@ -29,6 +29,7 @@ Class DAO {
 				if ($r == 0) {
 					die("createRSS error: no rss inserted\n");
 				}
+
 				return $this->readRSSfromURL($url);
 			} catch (PDOException $e) {
 				die("PDO Error :".$e->getMessage());
@@ -44,8 +45,6 @@ Class DAO {
 		$q = "SELECT * FROM RSS WHERE url = '$url'";
 		$r = $this->db->query($q);
 		$result = $r->fetchAll(PDO::FETCH_CLASS, "RSS");
-		var_dump($result);
-		
 		return $result;
 	}
 
@@ -70,6 +69,11 @@ Class DAO {
 
 	// Acces à une nouvelle à partir de son titre et l'ID du flux
 	function readNouvellefromTitre($titre,$RSS_id) {
+		$q = "SELECT * FROM nouvelle WHERE titre = '$titre' AND RSS_id = '$RSS_id'";
+		$r = $this->db->query($q);
+		$result = $r->fetchAll(PDO::FETCH_CLASS, "RSS");
+		return $result;
+
 	}
 
 	// Crée une nouvelle dans la base à partir d'un objet nouvelle
