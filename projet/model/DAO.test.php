@@ -5,7 +5,7 @@ require_once('DAO.class.php');
 $url = 'http://www.lemonde.fr/m-actu/rss_full.xml';
 
 
-$rss = $dao->readRSSfromURL($url);
+$rss = $dao->createRSS($url);
 
 if ($rss == NULL)
 {
@@ -19,7 +19,7 @@ echo $rss->getTitre();
 $i = 0;
 foreach($rss->getNouvelles() as $nouvelle)
 {
-	echo $nouvelle->getTitre();
+	//echo $nouvelle->getTitre();
 	$dao->createNouvelle($nouvelle, $i );
 	$i++;
 }

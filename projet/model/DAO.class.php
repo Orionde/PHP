@@ -97,21 +97,23 @@ Class DAO {
 		$res = $this->readNouvellefromTitre($n->getTitre(), $RSS_id);
 		if($res == NULL)
 		{
-			$query = "INSERT into nouvelle(date, titre, description, url ) VALUES(".
+			/*$query = "INSERT into nouvelle(date, titre, description, url ) VALUES(".
 				$n->getDateP().",".
 				$n->getTitre().",".
 				$n->getDescri().",".
 				$n->getURL()->textContent.",".
-			")";
-		foreach($res as $r)
-			$this->db->exec($r);
+			")";*/
+			$query = 
+		var_dump($query);
+			$this->db->exec($query);
 		}
 	}
 
 	// Met à jour le champ image de la nouvelle dans la base
-	function updateImageNouvelle(Nouvelle $n) {
-		// Met à jour uniquement le titre et la date
-	}
+/*	function updateImageNouvelle(Nouvelle $n)
+	{
+		$list = 
+	}*/
 
 	function getNouvelleFromID($RSS_id)
 	{
