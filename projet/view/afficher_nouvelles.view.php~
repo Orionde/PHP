@@ -16,9 +16,8 @@
 <?php
     foreach($table as $a)
 	{
-		$p = $a->getTitre();
-		print '<p>'.$p.'<p>';
-		echo '<a href= ../controler/afficher_nouvelle
+		$a = $a->getTitre();
+		print '<p>'.$a.'<p>';
 	}
 ?>
 

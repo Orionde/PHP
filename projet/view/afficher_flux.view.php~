@@ -15,7 +15,7 @@
     foreach($table as $a)
 	{
 		print '<p>'.$a.'<p>';
-	//	echo "<a href=".$a.">blabla</a";
+		echo "<a href=".$a.">blabla</a";
 
 	}
 ?>
