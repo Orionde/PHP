@@ -1,5 +1,5 @@
 <?php
-include_once("../model/DAO.class.php");
+include("../model/DAO.class.php");
 	
 	$q = "SELECT url FROM RSS";
 	$r = $dao->getDB()->query($q);

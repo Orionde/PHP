@@ -13,6 +13,10 @@ Class DAO {
 			exit("Erreur ouverture BD : ".$e->getMessage());
 		}
 	}
+	
+	function getDB(){
+		return $this->db;
+	}
 
 	//////////////////////////////////////////////////////////
 	// Methodes CRUD sur RSS
