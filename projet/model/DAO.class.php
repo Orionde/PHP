@@ -49,7 +49,19 @@ Class DAO {
 		$q = "SELECT * FROM RSS WHERE url = '$url'";
 		$r = $this->db->query($q);
 		$result = $r->fetchAll(PDO::FETCH_CLASS, "RSS");
-		return $result;
+		if($result != NULL)
+		{
+			foreach($result as $r)
+			{
+				return $r;
+			}
+			echo "ok";
+		}
+		else
+		{
+			echo "Null ! ";
+			return NULL;
+		}
 	}
 
 	// Met à jour un flux
@@ -83,11 +95,36 @@ Class DAO {
 	// Crée une nouvelle dans la base à partir d'un objet nouvelle
 	// et de l'id du flux auquelle elle appartient
 	function createNouvelle(Nouvelle $n, $RSS_id) {
+		$res = $this->readNouvellefromTitre($n->getTitre(), $RSS_id);
+		if($res == NULL)
+		{
+			$query = "INSERT into nouvelle VALUES(
+				'$n->getDateP()',
+				'$n->getTitre()',
+				'$n->getDescri()',
+				'$n->getURL()',
+				'$RSS_id')
+			)";
+		$this->db->exec($res);
+		}
 	}
 
 	// Met à jour le champ image de la nouvelle dans la base
 	function updateImageNouvelle(Nouvelle $n) {
 		// Met à jour uniquement le titre et la date
+	}
+
+	function getNouvelleFromID($RSS_id)
+	{
+		$res = "SELECT * FROM Nouvelle WHERE RSS_id = ('$RSS_id')";
+		$test = $this->db->query($res);
+		if($test == NULL)
+			return NULL;
+		else
+			$rendu = $test->fetchAll(PDO::FETCH_CLASS, "nouvelle");
+			return $rendu;
+			
+		
 	}
 }
 ?>

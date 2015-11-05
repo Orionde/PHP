@@ -5,6 +5,9 @@ class Nouvelle
 	private $descri;
 	private $datePubli;
 	private $image;
+	private $url;
+	private $rss_id;
+	
 
 	function getTitre()
 	{
@@ -20,9 +23,20 @@ class Nouvelle
 	{
 		return $this->datePubli;
 	}
+	
 	function getImage()
 	{
 		return $this->image;
+	}
+
+	function getURL()
+	{
+		return $this->url;
+	}
+
+	function getID()
+	{
+		return $rss_id;
 	}
 
 	function update(DOMElement $item)
@@ -39,7 +53,12 @@ class Nouvelle
 		
 		$nodeList = $item->getElementsByTagName('enclosure');
 		$this->image = $nodeList->item(0);
+		
+		$nodeList = $item->getElementsByTagName('link');
+		$this->url = $nodeList->item(0);
 
+		$nodeList = $item->getElementsByTagName('basename');
+		$this->rss_id = $nodeList->item(0);
 	}
 
 	function downloadImage(DOMElement $item, $imageID)

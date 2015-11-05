@@ -4,28 +4,26 @@ require_once('DAO.class.php');
 // Test si l'URL existe dans la BD
 $url = 'http://www.lemonde.fr/m-actu/rss_full.xml';
 
+
 $rss = $dao->readRSSfromURL($url);
-if ($rss == NULL) {
+
+if ($rss == NULL)
+{
 	echo $url." n'est pas connu\n";
 	echo "On l'ajoute ... \n";
 	$rss = $dao->createRSS($url);
-echo "Oniiiiiiiiiii l'ajoute ... \n";
-
-
 }
 
-
-foreach($rss as $t)
+$rss->update();
+echo $rss->getTitre();
+$i = 0;
+foreach($rss->getNouvelles() as $nouvelle)
 {
-// Mise à jour du flux
-$t->update();
-echo $t->getTitre()."\n";
-
-foreach($t->getNouvelles() as $nouvelle) {
-	echo ' '.$nouvelle->getTitre().' '.$nouvelle->getDateP()."\n";
-	echo '  '.$nouvelle->getDescri()."\n";
-
+	echo $nouvelle->getTitre();
+	$dao->createNouvelle($nouvelle, $i );
+	$i++;
 }
 
-}
+if($rss->getNouvelles() != NULL)
+	$dao->createNouvelle($rss->getNouvelles(), 1);
 ?>
