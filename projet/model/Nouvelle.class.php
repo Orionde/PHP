@@ -8,17 +8,14 @@ class Nouvelle
 	private $url;
 	private $rss_id;
 	
-
 	function getTitre()
 	{
 		return $this->titre;
 	}
-
 	function getDescri()
 	{
 		return $this->descri;
 	}
-
 	function getDateP()
 	{
 		return $this->datePubli;
@@ -28,23 +25,18 @@ class Nouvelle
 	{
 		return $this->image;
 	}
-
 	function getURL()
 	{
 		return $this->url;
 	}
-
 	function getID()
 	{
 		return $rss_id;
 	}
-
 	function update(DOMElement $item)
 	{
-
 		$nodeList = $item->getElementsByTagName('title');
 		$this->titre = $nodeList->item(0)->textContent;
-
 		$nodeList = $item->getElementsByTagName('pubDate');
 		$this->datePubli  = $nodeList->item(0)->textContent;
 		
@@ -57,10 +49,7 @@ class Nouvelle
 		$nodeList = $item->getElementsByTagName('link');
 		$this->url = $nodeList->item(0);
 
-		$nodeList = $item->getElementsByTagName('basename');
-		$this->rss_id = $nodeList->item(0);
 	}
-
 	function downloadImage(DOMElement $item, $imageID)
 	{
 		$nodeList = $item->getElementsByTagName('enclosure');
@@ -74,5 +63,4 @@ class Nouvelle
 		}
 	}
 }
-
 ?>

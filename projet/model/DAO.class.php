@@ -1,20 +1,20 @@
 <?php
 require_once('RSS.class.php');
 require_once('Nouvelle.class.php');
-$dao = new DAO();
+    $dao = new DAO();
 Class DAO {
 	private $db; // L'objet de la base de donnée
 
 	// Ouverture de la base de donnée
 	function __construct() {
-		$dsn = 'sqlite:rss.db'; // Data source name
+		$dsn = 'sqlite:../model/rss.db'; // Data source name
 		try {
 			$this->db = new PDO($dsn);
 		} catch (PDOException $e) {
 			exit("Erreur ouverture BD : ".$e->getMessage());
 		}
 	}
-
+	
 	function getDB(){
 		return $this->db;
 	}
@@ -97,22 +97,21 @@ Class DAO {
 		$res = $this->readNouvellefromTitre($n->getTitre(), $RSS_id);
 		if($res == NULL)
 		{
-			$query = 'INSERT INTO nouvelle(titre, description, url ) VALUES("'.
-					htmlspecialchars($n->getTitre()).'","'.
-					htmlspecialchars($n->getDescri()).'","'.
-					htmlspecialchars($n->getURL()->textContent).
-					'")';
-			var_dump($query);
-			$test = $this->db->exec($query);
+			$q = 'INSERT INTO nouvelle(titre, description, url, rss_id ) VALUES("'.
+				htmlspecialchars($n->getTitre()).'","'.
+				htmlspecialchars($n->getDescri()).'","'.
+				htmlspecialchars($n->getURL()->textContent).'","'.$RSS_id.
+			'")';
+			$r=$this->db->exec($q);
 
 		}
 	}
 
 	// Met à jour le champ image de la nouvelle dans la base
-	/*	function updateImageNouvelle(Nouvelle $n)
-		{
+/*	function updateImageNouvelle(Nouvelle $n)
+	{
 		$list = 
-		}*/
+	}*/
 
 	function getNouvelleFromID($RSS_id)
 	{
@@ -122,9 +121,9 @@ Class DAO {
 			return NULL;
 		else
 			$rendu = $test->fetchAll(PDO::FETCH_CLASS, "nouvelle");
-		return $rendu;
-
-
+			return $rendu;
+			
+		
 	}
 }
 ?>
