@@ -24,6 +24,4 @@ foreach($rss->getNouvelles() as $nouvelle)
 	$i++;
 }
 
-if($rss->getNouvelles() != NULL)
-	$dao->createNouvelle($rss->getNouvelles(), 1);
 ?>

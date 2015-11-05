@@ -1,5 +1,6 @@
 <?php
 require_once('RSS.class.php');
+require_once('Nouvelle.class.php');
     $dao = new DAO();
 Class DAO {
 	private $db; // L'objet de la base de donnée
@@ -55,11 +56,9 @@ Class DAO {
 			{
 				return $r;
 			}
-			echo "ok";
 		}
 		else
 		{
-			echo "Null ! ";
 			return NULL;
 		}
 	}
@@ -98,14 +97,14 @@ Class DAO {
 		$res = $this->readNouvellefromTitre($n->getTitre(), $RSS_id);
 		if($res == NULL)
 		{
-			$query = "INSERT into nouvelle VALUES(
-				'$n->getDateP()',
-				'$n->getTitre()',
-				'$n->getDescri()',
-				'$n->getURL()',
-				'$RSS_id')
-			)";
-		$this->db->exec($res);
+			$query = "INSERT into nouvelle(date, titre, description, url ) VALUES(".
+				$n->getDateP().",".
+				$n->getTitre().",".
+				$n->getDescri().",".
+				$n->getURL()->textContent.",".
+			")";
+		foreach($res as $r)
+			$this->db->exec($r);
 		}
 	}
 
