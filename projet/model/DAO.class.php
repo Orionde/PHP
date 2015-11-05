@@ -97,15 +97,21 @@ Class DAO {
 		$res = $this->readNouvellefromTitre($n->getTitre(), $RSS_id);
 		if($res == NULL)
 		{
-			/*$query = "INSERT into nouvelle(date, titre, description, url ) VALUES(".
-				$n->getDateP().",".
-				$n->getTitre().",".
-				$n->getDescri().",".
-				$n->getURL()->textContent.",".
-			")";*/
-			$query = 
+			$query = "INSERT into nouvelle(date, titre, description, url ) VALUES(\"".
+				$n->getDateP()."\",\"".
+				$n->getTitre()."\",\"".
+				$n->getDescri()."\",\"".
+				$n->getURL()->textContent.
+			")";
 		var_dump($query);
-			$this->db->exec($query);
+		try{
+			$test = $this->db->exec($query);
+			if($test ==0)
+				die("Erreur lors de l'insertion dans la table nouvelle. Mwuhaha");
+		} catch(PDOException $e)
+			{
+				die("PDO error :.$e->getMessage());
+			}
 		}
 	}
 
@@ -113,7 +119,7 @@ Class DAO {
 /*	function updateImageNouvelle(Nouvelle $n)
 	{
 		$list = 
-	}*/
+	}
 
 	function getNouvelleFromID($RSS_id)
 	{
@@ -126,6 +132,6 @@ Class DAO {
 			return $rendu;
 			
 		
-	}
+	}*/
 }
 ?>
