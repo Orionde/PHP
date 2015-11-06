@@ -16,12 +16,12 @@
 <?php
     foreach($table as $a)
 	{
-		echo '<a href="http://localhost/PHP/projet/controler/afficher_nouvelles.ctrl.php?rss='.$a->getID().'&titre='.$a->getTitre().'" >'.$a->getTitre().'</a></br>';
+		echo '<a href="http://www-etu-info.iut2.upmf-grenoble.fr/~congiohj/PHP/projet/controler/afficher_nouvelles.ctrl.php?rss='.$a->getID().'&titre='.$a->getTitre().'" >'.$a->getTitre().'</a></br>';
 
 	}
 	
 	echo '</br>';
-	echo '<a href="http://localhost/PHP/projet/controler/ajout_flux.php">Ajouter un flux </a>';
+	echo '<a href="http://www-etu-info.iut2.upmf-grenoble.fr/~congiohj/PHP/projet/controler/ajout_flux.php">Ajouter un flux </a>';
 ?>
 </article>
 <footer>

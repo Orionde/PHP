@@ -26,7 +26,7 @@ echo '</header>';
 		echo 'Lien vers la nouvelle <a href="'.$a->getURL().'" > ici </a></br>'; 
 	}
 	echo '</br></br></br></br>';
-	echo '<a href="http://localhost/PHP/projet/controler/afficher_nouvelles.ctrl.php?rss='.$a->getRSS_ID().'&titre='.$_GET["titre"].'"> Retour vers le flux : '.$_GET["titre"]. '</a>';
+	echo '<a href="http://www-etu-info.iut2.upmf-grenoble.fr/~congiohj/PHP/projet/controler/afficher_nouvelles.ctrl.php?rss='.$a->getRSS_ID().'&titre='.$_GET["titre"].'"> Retour vers le flux : '.$_GET["titre"]. '</a>';
 	?>
 </article>
 <footer>
