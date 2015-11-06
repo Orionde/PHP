@@ -5,7 +5,7 @@ body
 	margin: auto;
 	border : 1px solid #FFF;
 	background-color: #130E0A;
-	color: white;
+	color:  white;
 }
 
 header
@@ -18,17 +18,18 @@ header
 p
 {
 	margin: 0px;
+	color: black;
 }
 
 a:link
 {
 	text-decoration:none;
-	color: black;
+	color: blue;
 }
 
 a:visited
 {
-	color: white;
+	color: blue;
 }
 
 article

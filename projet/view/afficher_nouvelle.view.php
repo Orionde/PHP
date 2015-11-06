@@ -15,18 +15,20 @@ echo '<h1>';
 echo $table[0]->getTitre();  
 echo '</h1>';
 echo '</header>';
-
-
+?>
+<article>
+<?php
     foreach($table as $a)
 	{
-		//mettre l'image à la suite du titre 
+		echo '<img src="'.$a->getImage().'"/></br>';
 		print '<p>'.$a->getDescri().'<p>';
+		echo '</br>';
 		echo 'Lien vers la nouvelle <a href="'.$a->getURL().'" > ici </a></br>'; 
 	}
-	
+	echo '</br></br></br></br>';
 	echo '<a href="http://localhost/PHP/projet/controler/afficher_nouvelles.ctrl.php?rss='.$a->getRSS_ID().'&titre='.$_GET["titre"].'"> Retour vers le flux : '.$_GET["titre"]. '</a>';
 	?>
-
+</article>
 <footer>
 </footer>
 </body>

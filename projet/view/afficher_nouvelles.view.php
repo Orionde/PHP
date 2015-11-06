@@ -19,8 +19,8 @@
 	{
 		echo '<a href="http://localhost/PHP/projet/controler/afficher_nouvelle.ctrl.php?id='.$a->getID().'&titre='.$_GET["titre"].'">'.$a->getTitre()."</a></br>";
 	}
-	echo "<br/></br>";
-	echo '<a href="http://localhost/projet/controler/afficher_flux.ctrl.php"> Retour vers les flux ! </a>';
+	echo "</br></br>";
+	echo '<a href="http://localhost/PHP/projet/controler/afficher_flux.ctrl.php"> Retour vers les flux ! </a>';
 ?>
 	</article>
 <footer>
