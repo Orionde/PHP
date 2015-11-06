@@ -10,16 +10,16 @@
 
 <body>
 <header>
-<h1>Nouvelles </h1>
+<h1><?php echo $_GET["titre"];?> </h1>
 </header>
 
 <?php
     foreach($table as $a)
 	{
-		$p = $a->getTitre();
-		print '<p>'.$p.'<p>';
-		echo '<a href= ../controler/afficher_nouvelle
+		echo '<a href="http://localhost/projet/controler/afficher_nouvelle.ctrl.php?id='.$a->getID().'&titre='.$_GET["titre"].'">'.$a->getTitre()."</a></br>";
 	}
+	
+	echo '<a href="http://localhost/projet/controler/afficher_flux.ctrl.php"> Retour vers les flux ! </a>';
 ?>
 
 <footer>

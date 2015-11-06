@@ -2,11 +2,11 @@
 class Nouvelle
 {
 	private $titre;
-	private $descri;
-	private $datePubli;
+	private $description;
+	private $date;
 	private $image;
 	private $url;
-	private $rss_id;
+	private $RSS_id;
 	
 	function getTitre()
 	{
@@ -14,11 +14,11 @@ class Nouvelle
 	}
 	function getDescri()
 	{
-		return $this->descri;
+		return $this->description;
 	}
-	function getDateP()
+	function get_Date()
 	{
-		return $this->datePubli;
+		return $this->date;
 	}
 	
 	function getImage()
@@ -29,9 +29,14 @@ class Nouvelle
 	{
 		return $this->url;
 	}
+	function getRSS_ID()
+	{
+		return $this->RSS_id;
+	}
+	
 	function getID()
 	{
-		return $rss_id;
+		return $this->id;
 	}
 	function update(DOMElement $item)
 	{

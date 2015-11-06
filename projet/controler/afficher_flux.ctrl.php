@@ -1,18 +1,17 @@
 <?php
 include("../model/DAO.class.php");
 	
-	$q = "SELECT url FROM RSS";
+	$q = "SELECT * FROM RSS";
 	$r = $dao->getDB()->query($q);
-	$result = $r->fetchAll();
-	//var_dump($result);
+	$result = $r->fetchAll(PDO::FETCH_CLASS, "RSS");
 	$i=0;
 	foreach($result as $value)
 	{
-		foreach($value as $val)
-		{
-			$table[$i]=$val;
+
+			$table[$i]=$value;
+			$dao->updateRss($value);
 			$i++;
-		}
+		
 	}
 	
 require_once("../view/afficher_flux.view.php");

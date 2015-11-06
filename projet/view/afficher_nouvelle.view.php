@@ -9,19 +9,23 @@
 
 
 <body>
-<header>
-<h1>Nouvelle </h1>
-</header>
-
 <?php
+echo '<header>';
+echo '<h1>';
+echo $table[0]->getTitre();  
+echo '</h1>';
+echo '</header>';
+
+
     foreach($table as $a)
 	{
-		print '<p>'.$a->getTitre().'<p>';
 		//mettre l'image à la suite du titre 
 		print '<p>'.$a->getDescri().'<p>';
-		
+		echo 'Lien vers la nouvelle <a href="'.$a->getURL().'" > ici </a></br>'; 
 	}
-?>
+	
+	echo '<a href="http://localhost/projet/controler/afficher_nouvelles.ctrl.php?rss='.$a->getRSS_ID().'&titre='.$_GET["titre"].'"> Retour vers le flux : '.$_GET["titre"]. '</a>';
+	?>
 
 <footer>
 </footer>

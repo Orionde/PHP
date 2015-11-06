@@ -14,9 +14,7 @@
 <?php
     foreach($table as $a)
 	{
-		print '<p>'.$a.'<p>';
-	//	echo "<a href=".$a.">blabla</a";
-
+		echo '<a href="http://localhost/projet/controler/afficher_nouvelles.ctrl.php?rss='.$a->getID().'&titre='.$a->getTitre().'" >'.$a->getTitre().'</a>';
 	}
 ?>
 <footer>

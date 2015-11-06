@@ -54,6 +54,10 @@ Class DAO {
 		{
 			foreach($result as $r)
 			{
+				$r->update();
+				$q = 'UPDATE RSS SET titre="'.$r->getTitre().'" , date="'.$r->get_Date().'" WHERE url ="'.$r->getURL().'"';
+				echo $q;
+				$s = $this->db->exec($q);
 				return $r;
 			}
 		}
@@ -66,8 +70,8 @@ Class DAO {
 	// Met à jour un flux
 	function updateRSS(RSS $rss) {
 		// Met à jour uniquement le titre et la date
-		$titre = $this->db->quote($rss->titre());
-		$q = "UPDATE RSS SET titre=$titre, date='".$rss->date()."' WHERE url='".$rss->url()."'";
+		$titre = $this->db->quote($rss->getTitre());
+		$q = "UPDATE RSS SET titre=$titre, date='".$rss->get_Date()."' WHERE url='".$rss->getURL()."'";
 		try {
 			$r = $this->db->exec($q);
 			if ($r == 0) {
