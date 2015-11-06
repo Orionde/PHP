@@ -6,6 +6,7 @@ require_once("../model/Nouvelle.class.php");
 	$q = "SELECT * FROM nouvelle where id=$id";
 	$r = $dao->getDB()->query($q);
 	$result = $r->fetchAll(PDO::FETCH_CLASS, "Nouvelle");
+	var_dump($result);
 	$i = 0;
 	foreach($result as $value)
 	{

@@ -63,7 +63,7 @@ class Nouvelle
 		if($node != null)
 		{
 			$url = $node->nodeValue;
-			$this->image = 'images/'.$imageID.'.jpg';
+			$this->image = '../model/images/'.$imageID.'.jpg';
 			file_put_contents($this->image, file_get_contents($url));
 		}
 	}

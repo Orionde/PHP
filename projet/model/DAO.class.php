@@ -101,8 +101,9 @@ Class DAO {
 		$res = $this->readNouvellefromTitre($n->getTitre(), $RSS_id);
 		if($res == NULL)
 		{
-			$q = 'INSERT INTO nouvelle(titre, description, url, rss_id ) VALUES("'.
+			$q = 'INSERT INTO nouvelle(titre, date, description, url, rss_id ) VALUES("'.
 				htmlspecialchars($n->getTitre()).'","'.
+				htmlspecialchars($n->get_Date()).'","'.
 				htmlspecialchars($n->getDescri()).'","'.
 				htmlspecialchars($n->getURL()->textContent).'","'.$RSS_id.
 			'")';
@@ -112,10 +113,13 @@ Class DAO {
 	}
 
 	// Met à jour le champ image de la nouvelle dans la base
-/*	function updateImageNouvelle(Nouvelle $n)
-	{
-		$list = 
-	}*/
+	function updateImageNouvelle(Nouvelle $n) {
+        // Met à jour uniquement le titre et la date
+        $titre = $this->db->quote($n->getTitre());
+        $q = "UPDATE RSS SET titre=$titre, date='".$n->getPubDate()."' WHERE url='".$rss->getLink()."'";
+        $r = $this->db->exec($q);
+  
+    }
 
 	function getNouvelleFromID($RSS_id)
 	{
