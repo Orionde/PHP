@@ -1,43 +1,42 @@
 <?php
 include("../model/DAO.class.php");
-	
-	
-	
-	$url = 'http://www.lemonde.fr/m-actu/rss_full.xml';
-	$rss = $dao->createRSS($url);
 
+if(isset($_POST["flux"])){
+	
 
-	if ($rss == NULL)
+	if($_POST["flux"]!="vide" || $_POST["flux"])
 	{
-	echo $url." n'est pas connu\n";
-	echo "On l'ajoute ... \n";
-	$rss = $dao->createRSS($url);
+		$rss = $dao->createRSS($_POST["flux"]);
+
+
+		if ($rss == NULL)
+		{
+			$rss = $dao->createRSS($_POST["flux"]);
+		}
+		$rss->update();
+		foreach($rss->getNouvelles() as $nouvelle)
+		{
+			$query='SELECT id from RSS where url=\''.$_POST["flux"].'\'';
+			$r=$dao->getDB()->query($query);
+			$result = $r->fetchAll();
+			$id = $result[0]["id"];
+			$dao->createNouvelle($nouvelle, $id );
+		}
+		$_POST["flux"]="vide"; //vide $_POST[FLUX]
 	}
-	$rss->update();
-	echo $rss->getTitre();
-	foreach($rss->getNouvelles() as $nouvelle)
-	{
-	//echo $nouvelle->getTitre();
-	$query="SELECT id from RSS where url='$url'";
-	//echo $query;
-	$r=$dao->getDB()->query($query);
-	$result = $r->fetchAll();
-	$id = $result[0]["id"];
-	$dao->createNouvelle($nouvelle, $id );
-}
-
+	}
+	
+	
 	$q = "SELECT * FROM RSS";
 	$r = $dao->getDB()->query($q);
 	$result = $r->fetchAll(PDO::FETCH_CLASS, "RSS");
 	$i=0;
-	var_dump($result);
+	
 	foreach($result as $value)
 	{
-
 			$table[$i]=$value;
 			$dao->updateRss($value);
 			$i++;
-		
 	}
 	
 require_once("../view/afficher_flux.view.php");

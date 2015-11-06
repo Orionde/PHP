@@ -43,10 +43,10 @@ class Nouvelle
 		$nodeList = $item->getElementsByTagName('title');
 		$this->titre = $nodeList->item(0)->textContent;
 		$nodeList = $item->getElementsByTagName('pubDate');
-		$this->datePubli  = $nodeList->item(0)->textContent;
+		$this->date  = $nodeList->item(0)->textContent;
 		
 		$nodeList = $item->getElementsByTagName('description');
-		$this->descri  = $nodeList->item(0)->textContent;
+		$this->description  = $nodeList->item(0)->textContent;
 		
 		$nodeList = $item->getElementsByTagName('enclosure');
 		$this->image = $nodeList->item(0);

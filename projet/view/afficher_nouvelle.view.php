@@ -21,6 +21,7 @@ echo '</header>';
 	{
 		//mettre l'image à la suite du titre 
 		print '<p>'.$a->getDescri().'<p>';
+		echo '<img src="'.$a->getImage().'"/></br>';
 		echo 'Lien vers la nouvelle <a href="'.$a->getURL().'" > ici </a></br>'; 
 	}
 	

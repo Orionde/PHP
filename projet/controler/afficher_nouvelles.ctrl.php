@@ -4,7 +4,6 @@ require_once("../model/Nouvelle.class.php");
 	
 	$rss=$_GET['rss'];
 	$result = $dao->getNouvelleFromID($rss);
-	var_dump($result);
 	$i=0;
 	foreach($result as $value)
 	{

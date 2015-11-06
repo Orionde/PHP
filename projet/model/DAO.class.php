@@ -56,7 +56,6 @@ Class DAO {
 			{
 				$r->update();
 				$q = 'UPDATE RSS SET titre="'.$r->getTitre().'" , date="'.$r->get_Date().'" WHERE url ="'.$r->getURL().'"';
-				echo $q;
 				$s = $this->db->exec($q);
 				return $r;
 			}
@@ -88,7 +87,7 @@ Class DAO {
 
 	// Acces à une nouvelle à partir de son titre et l'ID du flux
 	function readNouvellefromTitre($titre,$RSS_id) {
-		$q = "SELECT * FROM nouvelle WHERE titre = '$titre' AND RSS_id = '$RSS_id'";
+		$q = "SELECT * FROM nouvelle WHERE titre = \"".htmlspecialchars($titre)."\" and RSS_id = $RSS_id";
 		$r = $this->db->query($q);
 		$result = $r->fetchAll(PDO::FETCH_CLASS, "RSS");
 		return $result;
@@ -101,11 +100,12 @@ Class DAO {
 		$res = $this->readNouvellefromTitre($n->getTitre(), $RSS_id);
 		if($res == NULL)
 		{
-			$q = 'INSERT INTO nouvelle(titre, date, description, url, rss_id ) VALUES("'.
+			$q = 'INSERT INTO nouvelle(titre, date, description, url, image, rss_id ) VALUES("'.
 				htmlspecialchars($n->getTitre()).'","'.
 				htmlspecialchars($n->get_Date()).'","'.
 				htmlspecialchars($n->getDescri()).'","'.
-				htmlspecialchars($n->getURL()->textContent).'","'.$RSS_id.
+				htmlspecialchars($n->getURL()->textContent).'","'.
+				htmlspecialchars($n->getImage()).'","'.$RSS_id.
 			'")';
 			$r=$this->db->exec($q);
 
