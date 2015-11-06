@@ -14,9 +14,12 @@ include("../model/DAO.class.php");
 	$rss = $dao->createRSS($url);
 	}
 	$rss->update();
+	echo $rss->getTitre();
 	foreach($rss->getNouvelles() as $nouvelle)
 	{
+	//echo $nouvelle->getTitre();
 	$query="SELECT id from RSS where url='$url'";
+	//echo $query;
 	$r=$dao->getDB()->query($query);
 	$result = $r->fetchAll();
 	$id = $result[0]["id"];
@@ -27,6 +30,7 @@ include("../model/DAO.class.php");
 	$r = $dao->getDB()->query($q);
 	$result = $r->fetchAll(PDO::FETCH_CLASS, "RSS");
 	$i=0;
+	//var_dump($result);
 	foreach($result as $value)
 	{
 
